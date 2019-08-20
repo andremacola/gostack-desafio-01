@@ -168,6 +168,14 @@ server.put(
   }
 );
 
+/* deletar um projeto */
+server.delete('/projects/:id', verifyProjectIDExist, (req, res) => {
+  const { id } = req.params;
+  const project = Projects.findIndex(project => project.id === id);
+  Projects.splice(project, 1);
+  return res.json({ message: 'Projeto deletado com sucesso!' });
+});
+
 // ############
 // RUN SERVER
 // ############
